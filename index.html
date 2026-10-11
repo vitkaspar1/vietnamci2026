@@ -222,6 +222,7 @@ h1,h2,h3,h4{font-family:var(--fd);font-weight:700;line-height:1.05;margin:0;text
 .poi .nm{font-weight:600;font-size:15px;line-height:1.2}
 .poi .vn{font-size:12.5px;color:var(--muted)}
 .poi .ll{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.gdist{display:inline-block;font-size:12px;font-weight:700;color:var(--ink);background:var(--soft);padding:1px 7px;border-radius:6px;font-variant-numeric:tabular-nums;white-space:nowrap;vertical-align:middle}.gdist:empty{display:none}.poi .gdist{margin-left:6px}.ftip .gdist{margin:4px 0 0}.sheet .gdist{margin-left:8px;font-size:13px}
 .ico{display:inline-flex;gap:6px}
 .ico button,.ico a{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;background:var(--bg);text-decoration:none}
 .ico svg{width:18px;height:18px}
@@ -592,7 +593,7 @@ function openSheet(p, dayN){
   const root=document.getElementById('sheetroot');
   const catName = (CATS.find(c=>c[0]===p.c)||['','Bod'])[1];
   root.innerHTML = `<div class="sheet-bg" data-close></div><div class="sheet" role="dialog" aria-label="${esc(p.n)}">
-    <div class="h"><span class="dot" style="--c:var(--c-${p.c||'ostatni'})"></span><div><div class="nm">${esc(p.n)}</div><div class="vn">${esc(catName)}${p.vn?' · '+esc(p.vn):''}</div><div class="ll num">${p.lat}, ${p.lng}</div></div><button class="cl" data-close aria-label="Zavřít">×</button></div>
+    <div class="h"><span class="dot" style="--c:var(--c-${p.c||'ostatni'})"></span><div><div class="nm">${esc(p.n)}</div><div class="vn">${esc(catName)}${p.vn?' · '+esc(p.vn):''}</div><div class="ll num">${p.lat}, ${p.lng}<span class="gdist" data-gd="${p.lat},${p.lng}"></span></div></div><button class="cl" data-close aria-label="Zavřít">×</button></div>
     <div class="actions">
       <a class="btn primary" href="${gnavUrl(p.lat,p.lng)}" target="_blank" rel="noopener">${ICONS.nav} Navigovat (Google)</a>
       <a class="btn" href="${wazeUrl(p.lat,p.lng)}" data-waze="${String(p.lat)+','+String(p.lng)}" target="_blank" rel="noopener"><b class="w">W</b> Otevřít ve Waze</a>
@@ -602,6 +603,7 @@ function openSheet(p, dayN){
     </div></div>`;
   root.querySelectorAll('[data-close]').forEach(el=>el.addEventListener('click',()=>root.innerHTML=''));
   root.querySelector('[data-copy]').addEventListener('click',e=>copy(e.currentTarget.dataset.copy));
+  geoDist(root);
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') document.getElementById('sheetroot').innerHTML=''; });
 
@@ -1092,7 +1094,8 @@ function foodPlaces(p){ return FOOD.places.filter(pl=>FOOD.gallery[pl.id] && pl.
 function foodImgs(pl){ const n=FOOD.gallery[pl.id]||0; const a=[]; for(let i=1;i<=n;i++) a.push(`img/food/${pl.id}/${i}.jpg`); return a; }
 function foodTipHTML(p, pois, n){ const pls=foodPlaces(p); let txt=linkNames(p,pois,n);
   if(txt.indexOf('poi-link')<0){ const f=foodTitleLink(p,pois); if(f) txt=`<a class="poi-link" data-p="${f.idx}" role="button" tabindex="0">${esc(f.t)}</a>`+esc(p.slice(f.t.length)); }
-  return `<div class="ftip"><p>${txt}</p>${pls.map(pl=>{ const imgs=foodImgs(pl); const g=FOOD.gm[pl.id];
+  let gd=''; { const pl=pls.find(x=>x.lat&&x.lng); const m=!pl && /data-p="(\d+)"/.exec(txt); const q=pl||(m&&pois[+m[1]]); if(q) gd=`<span class="gdist" data-gd="${q.lat},${q.lng}"></span>`; }
+  return `<div class="ftip"><p>${txt}</p>${gd}${pls.map(pl=>{ const imgs=foodImgs(pl); const g=FOOD.gm[pl.id];
     return `<div class="fph ${imgs.length>1?'gal':''}" data-fgal="${pl.id}" data-name="${esc(pl.name)}"><div class="strip">${imgs.map((u,i)=>`<img ${i?'loading="lazy"':''} src="${u}" alt="${esc(pl.name)}" data-i="${i}">`).join('')}</div>${imgs.length>1?`<span class="cnt">1/${imgs.length}</span>`:''}${g&&g.rating?`<span class="gr">Google ${String(g.rating).replace('.',',')}${g.n?' ('+g.n+')':''}</span>`:''}</div>`; }).join('')}</div>`; }
 // ---------- harmonogram dne (zastávky podél Vaškovy trasy, varianty, odbočky, poloha) ----------
 const PLAN_SEL=(()=>{ try{ return JSON.parse(localStorage.getItem('vn26.plan')||'{}'); }catch(e){ return {}; } })();
@@ -1175,14 +1178,16 @@ function bindPlan(el,n){ const sec=el.querySelector('.plan-sec'); if(!sec) retur
   if(GEO.on){ geoStart(); geoUpdate(); } }
 // poloha: sledování zapíná uživatel, volba se pamatuje; průběh podle promítnutí na vybranou trasu
 const GEO={on:false, watch:null, pos:null}; try{ GEO.on = localStorage.getItem('vn26.geo')==='1'; }catch(e){}
+document.addEventListener('click',e=>{ const g=e.target.closest('[data-geo]'); if(g && !g.closest('.plan-sec')) geoSet(!GEO.on); });
 function geoStart(){ if(!navigator.geolocation){ toast('Poloha není v tomto prohlížeči dostupná.'); GEO.on=false; return; } if(GEO.watch!=null) return;
   GEO.watch = navigator.geolocation.watchPosition(p=>{ GEO.pos={lat:p.coords.latitude,lng:p.coords.longitude,acc:p.coords.accuracy,t:Date.now()}; geoUpdate(); },
     e=>{ if(e.code===1){ toast('Přístup k poloze je zakázaný – povol ho v nastavení prohlížeče.'); geoSet(false); } else toast('Polohu se zatím nepodařilo zjistit.'); },
     {enableHighAccuracy:true, maximumAge:15000, timeout:30000}); }
 function geoStop(){ if(GEO.watch!=null && navigator.geolocation){ navigator.geolocation.clearWatch(GEO.watch); } GEO.watch=null; GEO.pos=null; }
-function geoClear(){ document.querySelectorAll('.plan-sec .pnode').forEach(li=>li.classList.remove('done','next','here')); document.querySelectorAll('.plan-sec .pgroup').forEach(g=>g.classList.remove('done')); document.querySelectorAll('.plan-sec .phere').forEach(x=>x.remove()); document.querySelectorAll('.plan-sec .pdist').forEach(x=>x.textContent=''); const pr=document.querySelector('.plan-sec .pprog'); if(pr) pr.hidden=true; }
+function geoDist(root){ root=root||document; if(!GEO.pos){ root.querySelectorAll('.gdist').forEach(x=>x.textContent=''); return; } const {lat,lng}=GEO.pos; root.querySelectorAll('.gdist[data-gd]').forEach(x=>{ const [a,b]=x.dataset.gd.split(',').map(Number); if(isNaN(a)||isNaN(b)) return; x.textContent=fmtKm(havKm(lat,lng,a,b))+' od vás'; }); }
+function geoClear(){ document.querySelectorAll('.gdist').forEach(x=>x.textContent=''); document.querySelectorAll('.plan-sec .pnode').forEach(li=>li.classList.remove('done','next','here')); document.querySelectorAll('.plan-sec .pgroup').forEach(g=>g.classList.remove('done')); document.querySelectorAll('.plan-sec .phere').forEach(x=>x.remove()); document.querySelectorAll('.plan-sec .pdist').forEach(x=>x.textContent=''); const pr=document.querySelector('.plan-sec .pprog'); if(pr) pr.hidden=true; }
 function geoSet(on){ GEO.on=on; try{ localStorage.setItem('vn26.geo', on?'1':'0'); }catch(e){} document.querySelectorAll('[data-geo]').forEach(b=>{ b.classList.toggle('on',on); b.innerHTML=`${ICONS.geo} ${on?'Poloha zapnuta':'Sledovat polohu'}`; }); if(on){ geoStart(); geoUpdate(); } else { geoStop(); geoClear(); } }
-function geoUpdate(){ const sec=document.querySelector('.plan-sec'); if(!sec||!GEO.pos) return; const n=+sec.querySelector('.plan').dataset.day; const pl=DAYS[n-1].plan; const prog=sec.querySelector('.pprog'); const {lat,lng}=GEO.pos;
+function geoUpdate(){ geoDist(); const sec=document.querySelector('.plan-sec'); if(!sec||!GEO.pos) return; const n=+sec.querySelector('.plan').dataset.day; const pl=DAYS[n-1].plan; const prog=sec.querySelector('.pprog'); const {lat,lng}=GEO.pos;
   if(pl.mode==='list'){ let best=null; sec.querySelectorAll('.pnode[data-lat]').forEach(li=>{ const dk=havKm(lat,lng,+li.dataset.lat,+li.dataset.lng); li.querySelector('.pdist').textContent=fmtKm(dk); li.classList.toggle('here',dk<0.25); if(!best||dk<best.dk) best={li,dk}; });
     prog.hidden=false; prog.querySelector('.bar').hidden=true; prog.querySelector('.ptxt').innerHTML = best? `Nejblíž: <b>${esc(best.li.querySelector('.pt').textContent)}</b> · ${fmtKm(best.dk)} vzdušnou čarou` : ''; return; }
   const {polys,total}=planPolys(n); let best=null; polys.forEach(pp=>{ const r=projectLL(lat,lng,pp.pts); if(!best||r.d<best.d) best={d:r.d, along:pp.off+Math.min(r.along,pp.km)}; }); if(!best) return;
@@ -1252,7 +1257,7 @@ function renderDay(n){
   d.program.forEach((p,i)=>{ const tip=/^PRO TIP|^Pozor|^Vašek/.test(p); h += `<p class="${i===0?'lead':''} ${tip?'tip':''}">${linkNames(p,pois,n)}</p>`; });
   h += `</div></div>`;
   h += '<!--@food-->';
-  if(d.food.length){ h += `<div class="sec"><h3>Tipy na jídlo</h3><div class="prose">`; d.food.forEach(p=>h+=foodTipHTML(p,pois,n)); h+=`</div></div>`; }
+  if(d.food.length){ h += `<div class="sec"><h3>Tipy na jídlo<button class="readbtn geo${GEO.on?' on':''}" type="button" data-geo="1">${ICONS.geo} ${GEO.on?'Poloha zapnuta':'Sledovat polohu'}</button></h3><div class="prose">`; d.food.forEach(p=>h+=foodTipHTML(p,pois,n)); h+=`</div></div>`; }
   h += '<!--@stay-->';
   const dst = staysForDay(n);
   if(dst.length){ const top = stayTop(dst);
@@ -1273,11 +1278,11 @@ function renderDay(n){
   // body v mapě
   h += '<!--@pois-->';
   if(pois.length){
-    h += `<div class="sec"><h3>Body v mapě <small>Vaškova mapa ${n===2||n===23||n===24?'Hanoje':n+'. dne'} · ${pois.length} bodů</small></h3>
+    h += `<div class="sec"><h3>Body v mapě <small>Vaškova mapa ${n===2||n===23||n===24?'Hanoje':n+'. dne'} · ${pois.length} bodů</small><button class="readbtn geo${GEO.on?' on':''}" type="button" data-geo="1">${ICONS.geo} ${GEO.on?'Poloha zapnuta':'Sledovat polohu'}</button></h3>
       <div class="actions" style="margin-top:8px"><button class="btn wide" data-copyall="1">${ICONS.copy} Kopírovat všechny souřadnice dne</button></div>`;
     CATS.forEach(([c,label])=>{ const list = pois.map((p,i)=>({p,i})).filter(x=>x.p.c===c); if(!list.length) return;
       h += `<details class="cat" ${list.length<=6?'open':''}><summary><span class="dot" style="--c:var(--c-${c})"></span>${label}<span class="cnt">${list.length}</span></summary>`;
-      list.forEach(x=>{ const p=x.p; h += `<div class="poi"><div><div class="nm">${esc(p.n)}</div>${p.vn?`<div class="vn">${esc(p.vn)}</div>`:''}<div class="ll">${p.lat}, ${p.lng}</div></div>
+      list.forEach(x=>{ const p=x.p; h += `<div class="poi"><div><div class="nm">${esc(p.n)}</div>${p.vn?`<div class="vn">${esc(p.vn)}</div>`:''}<div class="ll">${p.lat}, ${p.lng}<span class="gdist" data-gd="${p.lat},${p.lng}"></span></div></div>
         <div class="ico"><a href="${gmapsUrl(p.lat,p.lng)}" target="_blank" rel="noopener" title="Ukázat v mapách" aria-label="Ukázat v mapách">${ICONS.gmaps}</a><a href="${gnavUrl(p.lat,p.lng)}" target="_blank" rel="noopener" title="Navigovat (Google)">${ICONS.nav}</a><a href="${wazeUrl(p.lat,p.lng)}" data-waze="${String(p.lat)+','+String(p.lng)}" target="_blank" rel="noopener" title="Waze"><b class="w">W</b></a><button data-copy="${p.lat},${p.lng}" title="Kopírovat souřadnice do Waze">${ICONS.copy}</button></div></div>`; });
       h += `</details>`; });
     h += `</div>`;
