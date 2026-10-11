@@ -1532,6 +1532,7 @@ function renderPractical(){
   const el=document.getElementById('v-prakticke'); if(el.dataset.done) return; el.dataset.done=1;
   const tigit = {lat:21.06838, lng:105.80003};
   let h = emergencyHTML();
+  h += `<div class="sec" data-imgoff><h3>Fotky offline <small>restaurace a ubytování bez signálu</small></h3><p data-imgoff-txt style="font-size:14px;margin:0 0 8px">Zjišťuji…</p><div class="actions"><button class="btn primary" type="button" data-imgoff-btn hidden>⬇️ Stáhnout fotky do telefonu</button></div><p style="color:var(--muted);font-size:13px;margin-top:8px">Texty, mapy tras a harmonogram fungují offline vždy; fotky se stahují zvlášť (nejlépe na Wi‑Fi). Mapové podklady offline nejsou.</p></div>`;
   h += `<div class="sec"><h3>Letenky <small>VietJet, zaplaceno 28. 5. 2026</small></h3>
     <div class="flight"><div class="code">VJ032</div><div class="t">20:55 <small>so 10. 10. · Praha</small></div><div class="t">06:40 <small>ne 11. 10. · Almaty</small></div></div>
     <div class="flight"><div class="code">VJ032</div><div class="t">08:10 <small>ne 11. 10. · Almaty</small></div><div class="t">16:20 <small>ne 11. 10. · Hà Nội (Nội Bài)</small></div></div>
@@ -1576,7 +1577,7 @@ function renderPractical(){
   h += `<div class="sec"><h3>Zdroje <small>co v aplikaci je</small></h3><div class="prose"><p>Mail „Individuální plán – Severní Vietnam“ (19. 8. 2026) s časovou osou a logikou dnů; odpověď z 31. 8. 2026 s itineráři a 6 příručkami; <b>opravená verze z 14. 9. 2026</b> (Vašek posunul celý plán o den kvůli skutečnému příletu 11. 10.): 22 PDF itinerářů (0.1 Celkový plán, 0.2 Jak pracovat s itinerářem, 1.–18. den, 19.–21. den Cát Bà, 22. den) a 6 příruček; 21 Google map jednotlivých dnů (body zájmu se souřadnicemi, trasy); letenka VietJet; rezervace Tigit #852348. Dny 20, 21, 23 a 24 nemají vlastní PDF – jejich popis vychází z celkového plánu a Vaškova mailu. Vaškova „logika dne“ je citace z mailu 19. 8. (číslování dnů přepočítané na opravený plán).</p></div></div>`;
   h += msgHTML();
   h += todoHTML();
-  el.innerHTML = h;
+  el.innerHTML = h; imgOffStatus();
   // podmenu: skok na sekce + zvýraznění té, která je právě nahoře
   const SUBLAB={'Nouzová karta':'Nouze','Domluvit dopředu':'Úkoly','Individuální plán':'Plán','Zpráva pro rezervaci':'Zpráva'};
   const secs=[...el.querySelectorAll(':scope > .sec')]; const nav=document.createElement('nav'); nav.className='subnav'; nav.setAttribute('aria-label','Sekce v Praktickém');
@@ -1616,6 +1617,31 @@ document.addEventListener('error',e=>{ const img=e.target; if(!(img instanceof H
   img.classList.add('err'); const all=[...box.querySelectorAll('img')]; if(!all.some(i=>!i.classList.contains('err') && i.complete && i.naturalWidth>0)) box.classList.add('nophoto'); },true);
 document.addEventListener('load',e=>{ const img=e.target; if(!(img instanceof HTMLImageElement)) return; const box=photoBox(img); if(!box) return; img.classList.remove('err'); box.classList.remove('nophoto'); },true);
 window.addEventListener('online',()=>{ document.querySelectorAll('.fph img.err, .stay .ph img.err').forEach(img=>{ const u=img.getAttribute('src'); img.removeAttribute('src'); img.setAttribute('src',u); }); });
+// ---------- fotky pro offline: stáhnout všechny do trvalé cache 'vn26-img' (service worker je pak servíruje i bez signálu) ----------
+const IMGOFF={total:0,bytes:0,done:0,failed:0,running:false,ready:false};
+function imgOffStatus(){ document.querySelectorAll('[data-imgoff]').forEach(el=>{ const b=el.querySelector('[data-imgoff-btn]'), t=el.querySelector('[data-imgoff-txt]'); if(!t) return;
+  if(!('caches' in window)){ t.textContent='Tento prohlížeč offline fotky neumí (zkus Safari / Chrome, nebo aplikaci na ploše).'; if(b) b.hidden=true; return; }
+  if(!IMGOFF.ready){ t.textContent='Zjišťuji…'; return; }
+  const mb=Math.round(IMGOFF.bytes/1e6); const left=IMGOFF.total-IMGOFF.done;
+  if(IMGOFF.running) t.textContent=`Stahuji… ${IMGOFF.done} / ${IMGOFF.total} fotek${IMGOFF.failed?` · ${IMGOFF.failed} se nepovedlo`:''}`;
+  else if(left<=0) t.textContent=`Všechny fotky jsou uložené v telefonu (${IMGOFF.total} fotek, ${mb} MB) – fungují i bez signálu.`;
+  else t.textContent=`Uloženo ${IMGOFF.done} z ${IMGOFF.total} fotek (celkem ${mb} MB). ${navigator.onLine?'Zbytek se stáhne automaticky, nebo klepni na tlačítko.':'Jsi offline – zbytek se stáhne, až bude signál.'}`;
+  if(b){ b.hidden=IMGOFF.running||left<=0; b.disabled=!navigator.onLine; } }); }
+async function imgOffCheck(){ if(!('caches' in window)) { IMGOFF.ready=true; imgOffStatus(); return; }
+  try{ const r=await fetch('img-list.json',{cache:'no-cache'}); const j=await r.json(); IMGOFF.total=j.files.length; IMGOFF.bytes=j.bytes; IMGOFF.files=j.files;
+    const c=await caches.open('vn26-img'); const keys=await c.keys(); const have=new Set(keys.map(k=>k.url.replace(/^.*\/img\//,'img/')));
+    IMGOFF.missing=j.files.filter(f=>!have.has(f)); IMGOFF.done=IMGOFF.total-IMGOFF.missing.length; IMGOFF.ready=true; }
+  catch(e){ IMGOFF.ready=true; }
+  imgOffStatus(); }
+async function imgOffDownload(){ if(IMGOFF.running||!IMGOFF.ready||!IMGOFF.missing||!IMGOFF.missing.length||!navigator.onLine) return; IMGOFF.running=true; IMGOFF.failed=0; imgOffStatus();
+  const c=await caches.open('vn26-img'); const q=IMGOFF.missing.slice(); let last=0;
+  const worker=async()=>{ while(q.length && navigator.onLine){ const f=q.shift(); try{ const r=await fetch(f,{cache:'no-cache'}); if(r.ok){ await c.put(f, r); IMGOFF.done++; } else IMGOFF.failed++; }catch(e){ IMGOFF.failed++; } if(Date.now()-last>400){ last=Date.now(); imgOffStatus(); } } };
+  await Promise.all([worker(),worker(),worker()]);
+  IMGOFF.running=false; await imgOffCheck(); }
+document.addEventListener('click',e=>{ const b=e.target.closest('[data-imgoff-btn]'); if(b){ e.preventDefault(); imgOffDownload(); } });
+window.addEventListener('online',()=>{ imgOffStatus(); setTimeout(imgOffDownload,1500); });
+window.addEventListener('offline',imgOffStatus);
+setTimeout(async()=>{ await imgOffCheck(); if(navigator.onLine) imgOffDownload(); }, 2500);   // po startu: zjistit stav a potichu dostáhnout, co chybí
 // boční panel s hlavním menu (zprava, tlačítko v pravém horním rohu)
 const drawer=document.getElementById('drawer'), scrim=document.getElementById('scrim'), menubtn=document.getElementById('menubtn');
 function openMenu(){ scrim.hidden=false; requestAnimationFrame(()=>{ scrim.classList.add('on'); drawer.classList.add('open'); }); drawer.setAttribute('aria-hidden','false'); menubtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden';

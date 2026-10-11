@@ -1,12 +1,13 @@
 /* Vietnam 2026 – offline cache. Verze se mění s každým buildem. */
-const V = 'vn26-1d9bbe3502';
+const V = 'vn26-df8558dbb7';
+const IMG = 'vn26-img';   // fotky restaurací a ubytování – trvalá cache, přežije nové verze aplikace
 const PRECACHE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png',
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(V).then(c => Promise.allSettled(PRECACHE.map(u => c.add(u)))).then(() => self.skipWaiting()));
 });
 self.addEventListener('activate', e => {
-  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+  e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== V && k !== IMG).map(k => caches.delete(k)))).then(() => self.clients.claim()));
 });
 const isTile = u => /arcgisonline\.com|openstreetmap\.org|opentopomap\.org/.test(u);
 const cacheable = u => u.startsWith(self.location.origin) || /cdnjs\.cloudflare\.com|fonts\.googleapis\.com|fonts\.gstatic\.com/.test(u);
@@ -18,6 +19,11 @@ self.addEventListener('fetch', e => {
     // síť má přednost (nová verze), při výpadku cache
     e.respondWith(fetch(req).then(r => { const cp = r.clone(); caches.open(V).then(c => c.put('./index.html', cp)); return r; })
       .catch(() => caches.match('./index.html')));
+    return;
+  }
+  if (url.startsWith(self.location.origin) && /\/img\//.test(url)) {
+    // fotky: nejdřív trvalá cache, jinak síť a uložit (bez duplikování do cache verze)
+    e.respondWith(caches.open(IMG).then(c => c.match(req).then(hit => hit || fetch(req).then(r => { if (r && r.ok) c.put(req, r.clone()); return r; }))));
     return;
   }
   if (!cacheable(url)) return;
