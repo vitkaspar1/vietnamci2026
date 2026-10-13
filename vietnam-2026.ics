@@ -461,7 +461,7 @@ DTSTAMP:20260914T120000Z
 DTSTART;VALUE=DATE:20261014
 DTEND;VALUE=DATE:20261015
 SUMMARY:Den 4: PŘÍRODNÍ REZERVACE TÀ XÙA – Xuân Sơn → Tà Xùa
-LOCATION:Tà Xùa\, Vietnam (21.27979\,104.42685)
+LOCATION:Tà Xùa\, Vietnam (21.27936\,104.42388)
 DESCRIPTION:Výjezd zapadlými vesnicemi z národního parku. Výjezd do 
  Tà Xùa.\nVzdálenost 115 km\, čistá jízda 3h 37m. Profil trasy: ves
  nické cesty\, horské průsmyky\, hlavní tah.\nRozpočet na osobu: 760
@@ -545,6 +545,9 @@ DESCRIPTION:Výjezd zapadlými vesnicemi z národního parku. Výjezd do
  rna na hřebeni s výhledem na východ do údolí.\nAn's coffe Đỉnh g
  ió Tà Xùa - nejnovější kavárna přilehlá k nově se stavějící
  mu ubytování. Terasa s krásným výhledem kousek dále od silnice.\n\
+ nUBYTOVÁNÍ – ZAREZERVOVÁNO: Charming Home Tà Xùa\, 14.–15. 10. 
+ (2 pokoje pro 4\, přes Booking.com). Navigace: https://www.google.com/m
+ aps/dir/?api=1&destination=21.27936\,104.42388&travelmode=two-wheeler\n\
  nTIPY NA UBYTOVÁNÍ:\nV celé oblasti se dnes již nachází poměrně 
  mnoho ubytování\, avšak pouze malá část z nich je na Bookingu. Vě
  tšinou je tak nutné rezervovat přímým kontaktem přes Facebookovou 
@@ -606,10 +609,11 @@ DESCRIPTION:Výjezd zapadlými vesnicemi z národního parku. Výjezd do
  čarou\, +500 m) není v mapách – v aplikaci Mapa zapni polohu a sate
  lit\, vrchol je bod „Hora Hồng Phù Yên“.\n  POZOR u bodu 8: Z pr
  ůsmyku dolů do Phù Yên a dál jako Trasa 1 (Gia Phù\, Bắc Yên\, 
- výjezd do Tà Xùa).\nNavigace do cíle (Tà Xùa): https://www.google.
- com/maps/dir/?api=1&destination=21.27979\,104.42685&travelmode=two-wheel
- er\nWaze: https://waze.com/ul?ll=21.27979\,104.42685&navigate=yes\n\n—
-  Individuální plán\, Vietnamská jízda 2026
+ výjezd do Tà Xùa).\nNavigace do cíle (ubytování Charming Home Tà 
+ Xùa): https://www.google.com/maps/dir/?api=1&destination=21.27936\,104.
+ 42388&travelmode=two-wheeler\nWaze: https://waze.com/ul?ll=21.27936\,104
+ .42388&navigate=yes\n\n— Individuální plán\, Vietnamská jízda 202
+ 6
 END:VEVENT
 BEGIN:VEVENT
 UID:den5@vietnam2026.vitkaspar
