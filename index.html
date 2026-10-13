@@ -578,7 +578,7 @@ const ICONS = {
   map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4l6 2 6-2v14l-6 2-6-2-6 2V6z"/><path d="M9 4v14M15 6v14"/></svg>'
 };
 const gmapsUrl = (lat,lng) => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-const gnavUrl = (lat,lng) => `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+const gnavUrl = (lat,lng) => `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=two-wheeler`;
 const wazeUrl = (lat,lng) => `https://waze.com/ul?ll=${lat},${lng}&navigate=yes`;
 const wazeApp = (lat,lng) => `waze://?ll=${lat},${lng}&navigate=yes`;
 function openWaze(lat,lng){ const t=Date.now(); const fb=setTimeout(()=>{ if(!document.hidden && Date.now()-t<2500) window.open(wazeUrl(lat,lng),'_blank'); },1600); try{ window.location.href = wazeApp(lat,lng); }catch(e){ clearTimeout(fb); window.open(wazeUrl(lat,lng),'_blank'); } }
@@ -1145,7 +1145,7 @@ function listNodeHTML(n,pois,d,it){ const pdf=it.pdf!=null?d.pois_pdf[it.pdf]:nu
   if(!locs) det+=pactHTML(it.lat,it.lng);
   return `<li class="pnode main hasdet${it.kind==='anchor'?' anchor':''}" data-lat="${it.lat}" data-lng="${it.lng}" style="--c:var(--c-${cat})"><span class="pdot"></span><div class="pbody"><div class="prow"><b class="pt">${esc(it.t)}</b><span class="pkm pdist"></span></div><div class="pdet">${det}</div></div></li>`; }
 // navigace Google Maps po Vaškově trase: průjezdní body z route_wps.py (ověřeno lokálním routerem nad OSM)
-function navUrl(wps){ const f=p=>p[0]+','+p[1]; const mid=wps.slice(1,-1); return `https://www.google.com/maps/dir/?api=1&origin=${f(wps[0])}&destination=${f(wps[wps.length-1])}&travelmode=driving${mid.length?'&waypoints='+mid.map(f).join('%7C'):''}`; }
+function navUrl(wps){ const f=p=>p[0]+','+p[1]; const mid=wps.slice(1,-1); return `https://www.google.com/maps/dir/?api=1&origin=${f(wps[0])}&destination=${f(wps[wps.length-1])}&travelmode=two-wheeler${mid.length?'&waypoints='+mid.map(f).join('%7C'):''}`; }
 function navShare(stats){ const s=Math.min(...stats.map(x=>x.share)); return s>=0.995?'100 %':Math.round(s*100)+' %'; }
 function plWps(n){ return n===0?'bez průjezdních bodů':n===1?'1 průjezdní bod':n<5?n+' průjezdní body':n+' průjezdních bodů'; }
 function dayNav(n){ const pl=DAYS[n-1].plan; if(!pl||pl.mode!=='route') return null; const rl=pl.legs.map((l,i)=>[l,i]).filter(x=>x[0].kind==='route'&&!x[0].optional); if(rl.length>1&&pl.legs.slice(rl[0][1],rl[rl.length-1][1]).some(l=>l.kind==='gap')) return null;   // mezi úseky je trajekt → jen po úsecích
