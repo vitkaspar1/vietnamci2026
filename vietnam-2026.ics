@@ -580,17 +580,36 @@ DESCRIPTION:Výjezd zapadlými vesnicemi z národního parku. Výjezd do
  ntra tak nabízí strategickou pozici pro ranní brzké vstávání pro 
  sestup na vyhlídku. Booking/Agoda\n\nMapa dne (Google My Maps): https:/
  /www.google.com/maps/d/viewer?mid=1pXRSL-ZU2fJqqukzrhLzWc5ZOL3ZZA8\nNavi
- gace Google Maps po Vaškově trase (1 průj. bodů\, shoda s linií 100
-  %): https://www.google.com/maps/dir/?api=1&origin=21.12626\,104.95562&d
- estination=21.27787\,104.433&travelmode=two-wheeler&waypoints=21.24617\,
- 104.71629\nWaze po Vaškově trase (neumí průjezdní body – navigova
- t postupně na každý bod): 1. Průsmyk Đèo Dệt: https://waze.com/u
- l?ll=21.24617\,104.71629&navigate=yes · 2. Thào Coffee Tà Xùa: https
- ://waze.com/ul?ll=21.27787\,104.433&navigate=yes\nNavigace do cíle (Tà
-  Xùa): https://www.google.com/maps/dir/?api=1&destination=21.27979\,104
- .42685&travelmode=two-wheeler\nWaze: https://waze.com/ul?ll=21.27979\,10
- 4.42685&navigate=yes\n\n— Individuální plán\, Vietnamská jízda 20
- 26
+ gace Google Maps po Vaškově trase (7 průj. bodů\, shoda s linií 100
+  %): https://www.google.com/maps/dir/?api=1&origin=21.1264\,104.9565&des
+ tination=21.27787\,104.433&travelmode=two-wheeler&waypoints=21.09794\,10
+ 4.92036%7C21.05838\,104.85954%7C21.07678\,104.85404%7C21.07886\,104.8542
+ %7C21.11821\,104.80397%7C21.14092\,104.77419%7C21.24694\,104.70851\nWaze
+  po Vaškově trase (neumí průjezdní body – navigovat postupně na 
+ každý bod): 1. Začátek offroadu do kopce: https://waze.com/ul?ll=21.
+ 09794\,104.92036&navigate=yes · 2. Výhled na řeku a údolí: https://
+ waze.com/ul?ll=21.05838\,104.85954&navigate=yes · 3. Konec silnice – 
+ sjezd k řece: https://waze.com/ul?ll=21.07678\,104.85404&navigate=yes 
+ · 4. Začátek silnice za mostem: https://waze.com/ul?ll=21.07886\,104.
+ 8542&navigate=yes · 5. Vesnice Mường Bang: https://waze.com/ul?ll=21
+ .11821\,104.80397&navigate=yes · 6. Rozcestí ĐT114: https://waze.com/
+ ul?ll=21.14092\,104.77419&navigate=yes · 7. Průsmyk Đèo Dệt – ho
+ ra: https://waze.com/ul?ll=21.24694\,104.70851&navigate=yes · 8. Tà X
+ ùa: https://waze.com/ul?ll=21.27787\,104.433&navigate=yes\n  POZOR u bo
+ du 1: Pak ~500 m strmý offroad (za mokra jíl klouže)\; nahoře klepno
+ ut na další bod.\n  POZOR u bodu 3: Od tohoto bodu navigace NEFUNGUJE:
+  úzkou nezpevněnou cestou dolů k řece\, přes provizorní dřevěný
+  most (platí se místní paní) a nahoru. Na další bod klepnout až n
+ a silnici za mostem – jinak Waze i Google vedou objížďku přes 100 
+ km.\n  POZOR u bodu 7: Na rozcestí VPRAVO po ĐT114 (24 km). V průsmyk
+ u navigace končí: stezka na vrchol Hồng Phù Yên (~3 km vzdušnou 
+ čarou\, +500 m) není v mapách – v aplikaci Mapa zapni polohu a sate
+ lit\, vrchol je bod „Hora Hồng Phù Yên“.\n  POZOR u bodu 8: Z pr
+ ůsmyku dolů do Phù Yên a dál jako Trasa 1 (Gia Phù\, Bắc Yên\, 
+ výjezd do Tà Xùa).\nNavigace do cíle (Tà Xùa): https://www.google.
+ com/maps/dir/?api=1&destination=21.27979\,104.42685&travelmode=two-wheel
+ er\nWaze: https://waze.com/ul?ll=21.27979\,104.42685&navigate=yes\n\n—
+  Individuální plán\, Vietnamská jízda 2026
 END:VEVENT
 BEGIN:VEVENT
 UID:den5@vietnam2026.vitkaspar
