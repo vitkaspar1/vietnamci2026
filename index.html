@@ -753,7 +753,7 @@ function sunWxHTML(n){
     <div class="fact"><div class="k">Tma</div><div class="v num">~${fmtVN(dark)}</div></div>
     ${dep?`<div class="fact" style="grid-column:1/-1;border-color:var(--accent)"><div class="k">Vyjet nejpozději</div><div class="v num">${fmtVN(dep)}<small> čistá jízda ${esc(d.time)} × 1,5 na zastávky a jídlo + 45 min rezerva před západem; Vaškovy pokyny u dne mají přednost</small></div></div>`:''}
   </div><div class="wx" id="wx"><div class="card one"><div><div class="k">Předpověď</div><div class="s">Načítám…</div></div></div></div>
-  <div class="btnrow"><a class="btn" href="https://www.windy.com/?${P.dest.lat.toFixed(3)},${P.dest.lng.toFixed(3)},10" target="_blank" rel="noopener">${ICONS.map} Windy: předpověď pro ${esc(d.to)}</a><a class="btn" href="https://www.windy.com/distance/${DEST[d.from]?DEST[d.from].lat.toFixed(4)+','+DEST[d.from].lng.toFixed(4)+';':''}${P.dest.lat.toFixed(4)},${P.dest.lng.toFixed(4)}" target="_blank" rel="noopener">${ICONS.nav} Windy: dnešní úsek</a></div></div>`;
+  <div class="btnrow"><a class="btn" href="https://www.windy.com/?${P.dest.lat.toFixed(3)},${P.dest.lng.toFixed(3)},10" target="_blank" rel="noopener">${ICONS.map} Windy: předpověď pro ${esc(d.to)}</a><a class="btn" href="https://www.windy.com/distance/${windyPts(n,true).join(';')}" target="_blank" rel="noopener">${ICONS.nav} Windy: trasa od ${n}. dne dál</a></div></div>`;
   return h;
 }
 function depAlertHTML(n){
@@ -1512,6 +1512,10 @@ document.getElementById('prev').addEventListener('click',()=>go(cur-1));
 document.getElementById('next').addEventListener('click',()=>go(cur+1));
 
 // ---------- přehled ----------
+// Windy: cíle dnů od dne n dál (jen budoucí), po sobě stejné cíle jen jednou, bez Prahy; volitelně start = odkud se den n vyjíždí
+function windyPts(fromN, withStart){ const out=[]; const push=q=>{ if(!q) return; const s=`${q.lat.toFixed(4)},${q.lng.toFixed(4)}`; if(out[out.length-1]!==s) out.push(s); };
+  const d0=DAYS[fromN-1]; if(withStart&&d0) push(DEST[d0.from]); DAYS.forEach(d=>{ if(d.n>=fromN) push(DEST[d.to]); }); return out; }
+function todayN(){ const t=DAYS.find(d=>isToday(d.n)); if(t) return t.n; const now=new Date(); return now<dateOf(1)?1:24; }
 function renderOverview(){
   const el=document.getElementById('v-prehled'); if(el.dataset.done) return; el.dataset.done=1;
   let h = `<div class="sec" style="margin-top:14px"><h3>Celá trasa <small>klikni na destinaci</small></h3>${mapSVG({big:true})}
@@ -1523,11 +1527,10 @@ function renderOverview(){
       <div class="fact"><div class="k">Nejdelší etapa</div><div class="v num">216 km <small>18. den, Bắc Sơn → Cát Bà</small></div></div>
     </div></div>`;
   // Windy: Vzdálenost a plánování / plán trasy se všemi cíli dnů (bez Prahy); body = destinace z celkové mapy, po sobě jdoucí stejné cíle jen jednou
-  const wpts=[]; DAYS.forEach(d=>{ const q=DEST[d.to]; if(!q) return; const s=`${q.lat.toFixed(4)},${q.lng.toFixed(4)}`; if(wpts[wpts.length-1]!==s) wpts.push(s); });
-  const wk=wpts.join(';');
-  h += `<div class="sec"><h3>Počasí po trase <small>Windy.com s našimi cíli</small></h3><div class="prose"><p>Odkazy otevřou Windy s předvyplněnými cílovými destinacemi všech dnů (${wpts.length} bodů, Hanoj → hory → Cát Bà → Hanoj). V nástroji <b>Vzdálenost a plánování</b> jde body přetahovat, přidávat a číst vzdálenosti a předpověď po úsecích; <b>Plán trasy</b> ukáže počasí podél cesty v čase odjezdu.</p>
+  const tn=todayN(); const wpts=windyPts(tn,true); const wk=wpts.join(';'); const left=DAYS.filter(d=>d.n>=tn&&DEST[d.to]).map(d=>d.to).filter((x,i,a)=>a.indexOf(x)===i);
+  h += `<div class="sec"><h3>Počasí po trase <small>Windy.com · jen zbývající dny</small></h3><div class="prose"><p>Odkazy otevřou Windy s cíli ode dneška (${tn}. den) dál: ${esc(left.join(' → '))} (${wpts.length} bodů). Projeté dny se odmazávají samy. V nástroji <b>Vzdálenost a plánování</b> jde body přetahovat, přidávat a číst vzdálenosti a předpověď po úsecích; <b>Plán trasy</b> ukáže počasí podél cesty v čase odjezdu.</p>
     <div class="btnrow"><a class="btn primary" href="https://www.windy.com/distance/${wk}" target="_blank" rel="noopener">${ICONS.map} Windy: Vzdálenost a plánování</a><a class="btn" href="https://www.windy.com/route-planner/car/${wk}" target="_blank" rel="noopener">${ICONS.nav} Windy: Plán trasy (po silnici)</a></div>
-    <p><small>Předpověď Windy pro cíl jednoho dne je i u každého dne v sekci „Slunce a počasí“.</small></p></div></div>`;
+    <p><small>U každého dne je v sekci „Slunce a počasí“ předpověď pro cíl a odkaz na trasu od toho dne dál.</small></p></div></div>`;
   h += `<div class="sec"><h3>Fáze cesty</h3><div class="prose">
     <p><b style="color:var(--city)">Města</b> 11.–12. 10.: přílet, Hanoj. <b style="color:var(--green)">Hory</b> 13.–28. 10.: 16 dní v sedle severozápadem a severovýchodem (Xuân Sơn, Tà Xùa, Mù Cang Chải, Lào Cai, Hoàng Su Phì, Na Hang, Cao Bằng, Bản Giốc, Bắc Sơn). <b style="color:var(--sea)">Moře</b> 28. 10.–1. 11.: trajekt na Cát Bà, 3 dny dovolené, návrat do Hanoje. <b style="color:var(--city)">Města</b> 2.–3. 11.: poslední den v Hanoji, odlet.</p>
     <p>Vašek trasu postavil tak, aby byla „co nejvíc v klidu (prioritně tam, kde to za to nejvíc stojí / jsou možné aktivity) + pár delších přejezdů (tam, kde po cestě kromě krajiny nic moc vyloženě není + hlavně ke konci sice delší, ale rychlejší přejezdy na ostrov Cát Bà)“, se 3 celými dny + 4 nocemi na ostrově (původní rezervní den padl na posun plánu kvůli příletu 11. 10.). Oblast Hà Giang záměrně objíždí (13.–14. den), protože se tam „dneska nekompromisně kontrolují řidičáky“.</p></div></div>`;
