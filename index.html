@@ -1240,7 +1240,7 @@ function geoUpdate(){ geoDist(); wzGeo(); mapMe(); const sec=document.querySelec
   const nextTxt = next ? ` · další: <b>${esc(next.querySelector('.pt').textContent)}</b> za ${fmtKm(Math.max(0,+next.dataset.km-along))}` : ' · jste v cíli';
   prog.querySelector('.ptxt').innerHTML = `<b>${Math.round(pct)} %</b> trasy · ${fmtKm(along)} z ${fmtKm(total)}${nextTxt}${pl.speed&&total>along?` · do cíle ~${fmtDur((total-along)/pl.speed)}`:''}${best.d>2?` · <em>mimo trasu ${fmtKm(best.d)}</em>`:''}`; }
 
-const CAPTAINS=['Mistr Tuktuk','Dick','Posranej Meloun','Kapitán Posera']; const CAPT_FROM=6;   // 16. 10. = Mistr Tuktuk, dál dokola
+const CAPTAINS=['Mistr Tuktuk','Dick','Posranej Melounek','Kapitán Posera']; const CAPT_FROM=6;   // 16. 10. = Mistr Tuktuk, dál dokola
 function captain(n){ return n>=CAPT_FROM?CAPTAINS[(n-CAPT_FROM)%CAPTAINS.length]:null; }
 function renderDay(n){
   cur = n; const d = DAYS[n-1]; const k = KML[String(n)]||{pois:[],routes:[]};
