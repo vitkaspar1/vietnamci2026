@@ -102,7 +102,7 @@ h1,h2,h3,h4{font-family:var(--fd);font-weight:700;line-height:1.05;margin:0;text
 .strip button.today{box-shadow:0 0 0 2px var(--accent)}
 
 /* --- karta dne --- */
-.sign{background:var(--green);color:var(--green-ink);border-radius:14px;padding:16px 16px 14px;margin-top:6px;position:relative;overflow:hidden}
+.sign{background:var(--green);color:var(--green-ink);border-radius:14px;padding:16px 16px 14px;margin-top:6px;position:relative;overflow:hidden}.sign .capt{margin-top:8px;display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.22);font-size:13.5px;letter-spacing:.02em}.sign .capt b{font-weight:700}.tl .capt-td{font-size:12.5px;white-space:nowrap}
 .sign.p-more{background:var(--sea)}.sign.p-mesta{background:var(--city)}
 .sign .dayno{font-family:var(--fd);font-size:14px;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
 .sign h2{font-size:34px;text-transform:uppercase;margin:4px 0 8px;letter-spacing:.02em}
@@ -1240,6 +1240,8 @@ function geoUpdate(){ geoDist(); wzGeo(); mapMe(); const sec=document.querySelec
   const nextTxt = next ? ` · další: <b>${esc(next.querySelector('.pt').textContent)}</b> za ${fmtKm(Math.max(0,+next.dataset.km-along))}` : ' · jste v cíli';
   prog.querySelector('.ptxt').innerHTML = `<b>${Math.round(pct)} %</b> trasy · ${fmtKm(along)} z ${fmtKm(total)}${nextTxt}${pl.speed&&total>along?` · do cíle ~${fmtDur((total-along)/pl.speed)}`:''}${best.d>2?` · <em>mimo trasu ${fmtKm(best.d)}</em>`:''}`; }
 
+const CAPTAINS=['Mistr Tuktuk','Dick','Posranej Meloun','Kapitán Posera']; const CAPT_FROM=6;   // 16. 10. = Mistr Tuktuk, dál dokola
+function captain(n){ return n>=CAPT_FROM?CAPTAINS[(n-CAPT_FROM)%CAPTAINS.length]:null; }
 function renderDay(n){
   cur = n; const d = DAYS[n-1]; const k = KML[String(n)]||{pois:[],routes:[]};
   let pois = k.pois||[]; if(n===24) pois = pois.filter(p=>/Letiště|Tigit/.test(p.n));
@@ -1250,6 +1252,7 @@ function renderDay(n){
     <h2>${esc(d.theme)}</h2>
     <div class="route"><span>${esc(d.from)}</span><span class="arr">→</span><span>${esc(d.to)}</span></div>
     <div class="date">${wd} ${esc(d.date)}${d.synth?' · den bez vlastního PDF, popis sestaven z celkového plánu a Vaškova mailu':''}</div>
+    ${captain(n)?`<div class="capt">⚓ Kapitán dne: <b>${esc(captain(n))}</b></div>`:''}
   </div>`;
   h += `<div class="facts">
     <div class="fact"><div class="k">Vzdálenost</div><div class="v num">${d.km?esc(d.km):'<small>bez jízdy</small>'}</div></div>
@@ -1534,8 +1537,8 @@ function renderOverview(){
   h += `<div class="sec"><h3>Fáze cesty</h3><div class="prose">
     <p><b style="color:var(--city)">Města</b> 11.–12. 10.: přílet, Hanoj. <b style="color:var(--green)">Hory</b> 13.–28. 10.: 16 dní v sedle severozápadem a severovýchodem (Xuân Sơn, Tà Xùa, Mù Cang Chải, Lào Cai, Hoàng Su Phì, Na Hang, Cao Bằng, Bản Giốc, Bắc Sơn). <b style="color:var(--sea)">Moře</b> 28. 10.–1. 11.: trajekt na Cát Bà, 3 dny dovolené, návrat do Hanoje. <b style="color:var(--city)">Města</b> 2.–3. 11.: poslední den v Hanoji, odlet.</p>
     <p>Vašek trasu postavil tak, aby byla „co nejvíc v klidu (prioritně tam, kde to za to nejvíc stojí / jsou možné aktivity) + pár delších přejezdů (tam, kde po cestě kromě krajiny nic moc vyloženě není + hlavně ke konci sice delší, ale rychlejší přejezdy na ostrov Cát Bà)“, se 3 celými dny + 4 nocemi na ostrově (původní rezervní den padl na posun plánu kvůli příletu 11. 10.). Oblast Hà Giang záměrně objíždí (13.–14. den), protože se tam „dneska nekompromisně kontrolují řidičáky“.</p></div></div>`;
-  h += `<div class="sec"><h3>Časová osa</h3><div class="tablewrap"><table class="tl"><thead><tr><th>Den</th><th>Datum</th><th>Trasa</th><th class="r">km / jízda</th><th class="r">Rozpočet</th></tr></thead><tbody>`;
-  DAYS.forEach(d=>{ h+=`<tr data-n="${d.n}"><td class="n num">${d.n}<i style="background:var(--${d.phase==='hory'?'green':d.phase==='more'?'sea':'city'})"></i></td><td class="num">${d.weekday.slice(0,2)} ${esc(d.date.split(' ').slice(0,2).join(''))}</td><td><div class="theme">${esc(d.theme)}</div><div>${esc(d.from)} → ${esc(d.to)}</div></td><td class="r num">${d.km?esc(d.km)+'<br><small>'+esc(d.time)+'</small>':'—'}</td><td class="r num">${fmtVND(d.budget.celkem)}</td></tr>`; });
+  h += `<div class="sec"><h3>Časová osa</h3><div class="tablewrap"><table class="tl"><thead><tr><th>Den</th><th>Datum</th><th>Trasa</th><th>Kapitán</th><th class="r">km / jízda</th><th class="r">Rozpočet</th></tr></thead><tbody>`;
+  DAYS.forEach(d=>{ h+=`<tr data-n="${d.n}"><td class="n num">${d.n}<i style="background:var(--${d.phase==='hory'?'green':d.phase==='more'?'sea':'city'})"></i></td><td class="num">${d.weekday.slice(0,2)} ${esc(d.date.split(' ').slice(0,2).join(''))}</td><td><div class="theme">${esc(d.theme)}</div><div>${esc(d.from)} → ${esc(d.to)}</div></td><td class="capt-td">${captain(d.n)?'⚓ '+esc(captain(d.n)):'—'}</td><td class="r num">${d.km?esc(d.km)+'<br><small>'+esc(d.time)+'</small>':'—'}</td><td class="r num">${fmtVND(d.budget.celkem)}</td></tr>`; });
   h += `</tbody></table></div></div>`;
   h += `<div class="sec"><h3>Finanční přehled <small>na osobu, kurz k 30. 8. 2026</small></h3><div class="money">
     <span>Denní rozpočty celkem (24 dní)</span><b class="num">15 440 000 VND</b>
