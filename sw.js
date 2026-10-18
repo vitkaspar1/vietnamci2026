@@ -1,5 +1,5 @@
 /* Vietnam 2026 – offline cache. Verze se mění s každým buildem. */
-const V = 'vn26-b9d0838de4';
+const V = 'vn26-d8d57eae0f';
 const IMG = 'vn26-img';   // fotky restaurací a ubytování – trvalá cache, přežije nové verze aplikace
 const PRECACHE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png',
   'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js'];

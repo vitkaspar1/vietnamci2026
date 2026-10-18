@@ -1340,7 +1340,7 @@ DTSTAMP:20260914T120000Z
 DTSTART;VALUE=DATE:20261019
 DTEND;VALUE=DATE:20261020
 SUMMARY:Den 9: K HRANICI S ČÍNOU – Mù Cang Chải → Lào Cai
-LOCATION:Lào Cai\, Vietnam (22.5003\,103.96529)
+LOCATION:Lào Cai\, Vietnam (22.33636\,103.84379)
 DESCRIPTION:Dlouhý přejezd do pohraničního města Lào Cai. Možnost 
  jet přes turisticky nejznámější oblast v severním Vietnamu – Sa 
  Pa.\nVzdálenost 184 km\, čistá jízda 4h 30m. Profil trasy: kvalitní
@@ -1431,21 +1431,26 @@ DESCRIPTION:Dlouhý přejezd do pohraničního města Lào Cai. Možnost
  h mì ba miền Lào Cai - vietnamské bagety.\nPhở bò\, phở xào\,
   cơm rang - polévka phở\, smažené nudle a rýže.\nMěsto je oprav
  du velké a v podstatě všude narazíte na jídelnu nebo restauraci.\n\
- nTIPY NA UBYTOVÁNÍ:\nV Lào Cai mám vyzkoušený Hướng Dương Hot
- el. Booking/Agoda\nVe městě se samozřejmě nachází obrovské množs
- tví hotelů všech úrovní. Doporučuji možná prozkoumat aktuální 
- nabídku. Pro vyhledání klikněte na odkaz níže.\nPokud pojedete př
- es Sapu\, tak dává smysl se zde ubytovat z důvodu kvalitnějších a 
- luxusnějších hotelů\, které jinde na severu nejsou.\n\nKAPITÁN DNE
- : Posranej Melounek\n\nMapa dne (Google My Maps): https://www.google.com
- /maps/d/viewer?mid=1EB9PQoQL3b_Yh2bPylPTLIjg9bpFp18w\nNavigace Google Ma
- ps po Vaškově trase (2 průj. bodů\, shoda s linií 100 %): https://w
- ww.google.com/maps/dir/?api=1&origin=21.76653\,104.17141&destination=22.
- 48089\,103.97589&travelmode=two-wheeler&waypoints=22.14556\,104.24576%7C
- 22.40469\,104.04778\nNavigace do cíle (Lào Cai): https://www.google.co
- m/maps/dir/?api=1&destination=22.5003\,103.96529&travelmode=two-wheeler\
- nWaze: https://waze.com/ul?ll=22.5003\,103.96529&navigate=yes\n\n— Ind
- ividuální plán\, Vietnamská jízda 2026
+ nUBYTOVÁNÍ – ZAREZERVOVÁNO: Vi's House – Sapa (Airbnb: Soukromá 
+ ekologická luxusní vila)\, 19.–20. 10. (celý dům pro 4 (3 ložnice
+ \, 2 koupelny\, bazén)\, přes Airbnb). Navigace: https://www.google.co
+ m/maps/dir/?api=1&destination=22.33636\,103.84379&travelmode=two-wheeler
+ \n\nTIPY NA UBYTOVÁNÍ:\nV Lào Cai mám vyzkoušený Hướng Dương 
+ Hotel. Booking/Agoda\nVe městě se samozřejmě nachází obrovské mno
+ žství hotelů všech úrovní. Doporučuji možná prozkoumat aktuáln
+ í nabídku. Pro vyhledání klikněte na odkaz níže.\nPokud pojedete 
+ přes Sapu\, tak dává smysl se zde ubytovat z důvodu kvalitnějších
+  a luxusnějších hotelů\, které jinde na severu nejsou.\n\nKAPITÁN 
+ DNE: Posranej Melounek\n\nMapa dne (Google My Maps): https://www.google.
+ com/maps/d/viewer?mid=1EB9PQoQL3b_Yh2bPylPTLIjg9bpFp18w\nNavigace Google
+  Maps po Vaškově trase (2 průj. bodů\, shoda s linií 100 %): https:
+ //www.google.com/maps/dir/?api=1&origin=21.76653\,104.17141&destination=
+ 22.48119\,103.97569&travelmode=two-wheeler&waypoints=22.33816\,103.85285
+ %7C22.4524\,103.93276\nNavigace do cíle (ubytování Vi's House – Sap
+ a (Airbnb: Soukromá ekologická luxusní vila)): https://www.google.com
+ /maps/dir/?api=1&destination=22.33636\,103.84379&travelmode=two-wheeler\
+ nWaze: https://waze.com/ul?ll=22.33636\,103.84379&navigate=yes\n\n— In
+ dividuální plán\, Vietnamská jízda 2026
 END:VEVENT
 BEGIN:VEVENT
 UID:den10@vietnam2026.vitkaspar
