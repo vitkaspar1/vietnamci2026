@@ -185,7 +185,7 @@ h1,h2,h3,h4{font-family:var(--fd);font-weight:700;line-height:1.05;margin:0;text
 .game .opt.bad{border-color:var(--accent)}
 .game .opt:disabled{opacity:.9}
 .game .res{font-family:var(--fd);font-size:34px;font-weight:700;margin-top:10px}
-.warn{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:14.5px}
+.warn{background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-line);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:14.5px}.warn.alert{border-width:2px;border-color:var(--accent);box-shadow:inset 4px 0 0 var(--accent)}
 .warn b{font-weight:700}
 
 .sec{margin-top:22px}
@@ -1266,7 +1266,9 @@ function renderDay(n){
   if(n===2) h += `<div class="warn"><b>Plán dne:</b> ráno směnárna Quang Dũng (69 Hà Trung), pak město, na závěr dne masáž v Omamori Spa (viz Harmonogram dne).</div>`;
   if(n===24) h += `<div class="warn"><b>Změna letu: odlet 3. 11. už v 6:40</b> (VJ031 Nội Bài → Almaty 11:15, Almaty 12:45 → Praha 16:25). VietJet let posunul o 2 h 05 min dřív oproti původní letence (8:45). Odjezd z hotelu nejpozději ve 4:00 – taxi domluvit večer předem přes hotel. Online check-in od 2. 11. 6:40.</div>`;
   if(n===3) h += `<div class="warn"><b>Motorky:</b> Tigit Motorbikes, Hanoi Office – převzetí 13. 10. v 8:30 (3× Honda XR 150, 1× Honda CB 500X); Vašek Tigitu napsal o posun z 12. 10., ověř si potvrzení. Vezmi pas. Adresa a navigace v záložce Praktické.</div>`;
-  if(n===18) h += `<div class="warn"><b>Poslední trajekt z přístavu Tuần Châu na Cát Bà vyplouvá v 15:00.</b> Vyjeďte nejpozději v 8:00, ideálně v 7:00. V přístavu buďte nejpozději okolo 14:30. Lístek 80 000 VND za osobu s motorkou, plavba cca 50 min.</div>`;
+  if(n===11) h += `<div class="warn alert"><b>🛑 OFFROAD ALERT – Vašek varuje:</b> v druhé půlce dne je krátký rozbitý úsek údolím. Podle Vaška je v pohodě – <b>bez stoupání a klesání</b>, jen pomalu. Opravdový offroad přijde až zítra na Chiêu Lầu Thi.</div>`;
+  if(n===12) h += `<div class="warn alert"><b>🛑 OFFROAD ALERT – Vašek varuje, Vítek by tam neměl:</b> výjezd na horu Chiêu Lầu Thi je <b>15 km náročného offroadu nahoru</b> a i cesta údolím k jeho začátku je rozbitá. S nártem to nedávat – jet okruh bez hory, nebo dojet jen k odbočce na offroad a horu nechat ostatním (nahoře ještě ~30 min pěšky na vrchol). Hora je volitelná, okruh funguje i bez ní.</div>`;
+  if(n===18) h += `<div class="warn alert"><b>🛑 Poslední trajekt z přístavu Tuần Châu na Cát Bà vyplouvá v 15:00.</b> Vyjeďte nejpozději v 8:00, ideálně v 7:00. V přístavu buďte nejpozději okolo 14:30. Lístek 80 000 VND za osobu s motorkou, plavba cca 50 min.</div>`;
   if(n===22) h += `<div class="warn"><b>Vrácení motorek:</b> Tigit Hanoi Office do 16:00 (rezervace končí 1. 11. v 16:00). Trajekt Cái Viềng → Gót (cca 15 min), pak 130 km po AH14. Pozor: nová dálnice do Hanoje je jen pro auta – nenechte se tam navést navigací.</div>`;
   // akce
   h += `<div class="actions">
