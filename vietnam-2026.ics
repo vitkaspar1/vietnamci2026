@@ -1553,7 +1553,7 @@ DTSTART;VALUE=DATE:20261021
 DTEND;VALUE=DATE:20261022
 SUMMARY:Den 11: OBLAST HOÀNG SU PHÌ – Mường Khương → Vinh Quan
  g
-LOCATION:Vinh Quang\, Vietnam (22.74322\,104.68027)
+LOCATION:Vinh Quang\, Vietnam (22.69482\,104.66833)
 DESCRIPTION:Úžasná obrovská údolí a průsmyky\, vesnice etnických 
  menšin. Opravdový klenot této oblasti. Přejezd do horské oblasti Ho
  àng Su Phì proslavené svými kaskádovitými rýžovými terasami.\nV
@@ -1613,25 +1613,29 @@ DESCRIPTION:Úžasná obrovská údolí a průsmyky\, vesnice etnických
  okou nabídku a úroveň.\nV Cốc Pài je dobrá restaurace Nhà hàng 
  Tuấn Mẩu.\nV Vinh Quang doporučuji restauraci Bia Hơi Tuấn Thu
  ấn a na snídani Phở Vương Diu.\nKaždé homestay ubytování vám
-  samozřejmě poskytne bohatou rodinnou večeři i snídani.\n\nTIPY NA 
- UBYTOVÁNÍ:\nV mapě jsem označil spoustu ubytování v celé oblasti.
- \nPokud budete potřebovat přespat už v Cốc Pài\, tak doporučuji N
- hà nghỉ Ngọc Sơn\, nebo Nùng Gia HomeStay s hezkou terasou a výh
- ledem do údolí.\nV oblasti Bản Phùng doporučuji Trọng Phú Homes
- tay.\nV Vinh Quang Hotel Tay Con Linh nebo Thanh Vân Homestay.\nV šir
- ším okolí Vinh Quang se nachází spousta homestay ubytování. Mezi 
- mé tipy patří Nậm Lỳ Retreat Booking/Agoda\, nebo o trochu vzdál
- enější\, ale naopak strategicky blíže vrcholu hory Chiều Lâu Thi
-  - Lagom Su Phì Homestay Agoda\, nebo Long Chiều homestay.\nPro ubyto
- vání v celém kraji Hoàng Su Phì klikněte na odkazy níže.\n\nKAPI
- TÁN DNE: Mistr Tuktuk\n\nMapa dne (Google My Maps): https://www.google.
- com/maps/d/viewer?mid=1YYK859FJXk5q-ZOf8cBmc3O9ghbodPQ\nNavigace Google 
- Maps po Vaškově trase (0 průj. bodů\, shoda s linií 100 %): https:/
- /www.google.com/maps/dir/?api=1&origin=22.76468\,104.10582&destination=2
- 2.74326\,104.68021&travelmode=two-wheeler\nNavigace do cíle (Vinh Quang
- ): https://www.google.com/maps/dir/?api=1&destination=22.74322\,104.6802
- 7&travelmode=two-wheeler\nWaze: https://waze.com/ul?ll=22.74322\,104.680
- 27&navigate=yes\n\n— Individuální plán\, Vietnamská jízda 2026
+  samozřejmě poskytne bohatou rodinnou večeři i snídani.\n\nUBYTOVÁ
+ NÍ – ZAREZERVOVÁNO: Nậm Lỳ Retreat\, 21.–23. 10. (1 rodinný p
+ okoj s výhledem na hory pro 4\, přes Booking.com). Navigace: https://w
+ ww.google.com/maps/dir/?api=1&destination=22.69482\,104.66833&travelmode
+ =two-wheeler\n\nTIPY NA UBYTOVÁNÍ:\nV mapě jsem označil spoustu ubyt
+ ování v celé oblasti.\nPokud budete potřebovat přespat už v Cốc 
+ Pài\, tak doporučuji Nhà nghỉ Ngọc Sơn\, nebo Nùng Gia HomeStay
+  s hezkou terasou a výhledem do údolí.\nV oblasti Bản Phùng doporu
+ čuji Trọng Phú Homestay.\nV Vinh Quang Hotel Tay Con Linh nebo Thanh
+  Vân Homestay.\nV širším okolí Vinh Quang se nachází spousta home
+ stay ubytování. Mezi mé tipy patří Nậm Lỳ Retreat Booking/Agoda
+ \, nebo o trochu vzdálenější\, ale naopak strategicky blíže vrchol
+ u hory Chiều Lâu Thi - Lagom Su Phì Homestay Agoda\, nebo Long Chi
+ ều homestay.\nPro ubytování v celém kraji Hoàng Su Phì klikněte 
+ na odkazy níže.\n\nKAPITÁN DNE: Mistr Tuktuk\n\nMapa dne (Google My M
+ aps): https://www.google.com/maps/d/viewer?mid=1YYK859FJXk5q-ZOf8cBmc3O9
+ ghbodPQ\nNavigace Google Maps po Vaškově trase (0 průj. bodů\, shoda
+  s linií 100 %): https://www.google.com/maps/dir/?api=1&origin=22.76468
+ \,104.10582&destination=22.74326\,104.68021&travelmode=two-wheeler\nNavi
+ gace do cíle (ubytování Nậm Lỳ Retreat): https://www.google.com/m
+ aps/dir/?api=1&destination=22.69482\,104.66833&travelmode=two-wheeler\nW
+ aze: https://waze.com/ul?ll=22.69482\,104.66833&navigate=yes\n\n— Indi
+ viduální plán\, Vietnamská jízda 2026
 END:VEVENT
 BEGIN:VEVENT
 UID:den12@vietnam2026.vitkaspar
@@ -1639,7 +1643,7 @@ DTSTAMP:20260914T120000Z
 DTSTART;VALUE=DATE:20261022
 DTEND;VALUE=DATE:20261023
 SUMMARY:Den 12: HORA CHIÊU LẦU THI – Vinh Quang → Vinh Quang
-LOCATION:Vinh Quang\, Vietnam (22.74322\,104.68027)
+LOCATION:Vinh Quang\, Vietnam (22.69482\,104.66833)
 DESCRIPTION:Celodenní průzkum oblasti Hoàng Su Phì. Výjezd a výšla
  p na 2402 m vysokou horu Chiêu Lầu Thi.\nVzdálenost 112 km\, čistá
   jízda 4h 50m. Profil trasy: vesnické cesty.\nRozpočet na osobu: 660 
@@ -1720,27 +1724,30 @@ DESCRIPTION:Celodenní průzkum oblasti Hoàng Su Phì. Výjezd a výšla
  zkou. Za sebe doporučuji vzít si něco na cestu\, nebo akceptovat nap
  ř. ovoce\, či sušenky z místních sámošek po cestě. Pokud i tak n
  arazíte na otevřenou jídelnu\, tak doporučuji ideálně mezi 11.-12.
-  hodinou\, kdy je vše ještě čerstvé.\n\nTIPY NA UBYTOVÁNÍ:\nV map
- ě jsem označil spoustu ubytování v celé oblasti.\nPokud budete pot
- řebovat přespat už v Cốc Pài\, tak doporučuji Nhà nghỉ Ngọc 
- Sơn\, nebo Nùng Gia HomeStay s hezkou terasou a výhledem do údolí.\
- nV oblasti Bản Phùng doporučuji Trọng Phú Homestay.\nV Vinh Quang
-  Hotel Tay Con Linh nebo Thanh Vân Homestay.\nV širším okolí Vinh Q
- uang se nachází spousta homestay ubytování. Mezi mé tipy patří N
- ậm Lỳ Retreat Booking/Agoda\, nebo o trochu vzdálenější\, ale na
- opak strategicky blíže vrcholu hory Chiều Lâu Thi - Lagom Su Phì H
- omestay Agoda\, nebo Long Chiều homestay.\nPro ubytování v celém kr
- aji Hoàng Su Phì klikněte na odkazy níže.\n\nKAPITÁN DNE: Dick\n\n
- Mapa dne (Google My Maps): https://www.google.com/maps/d/viewer?mid=1-ku
- QR45J-FrQz9F80IphLExZKQEq6uc\nNavigace Google Maps po Vaškově trase (5
-  průj. bodů\, shoda s linií 98 %): https://www.google.com/maps/dir/?a
- pi=1&origin=22.74108\,104.67875&destination=22.74108\,104.67875&travelmo
- de=two-wheeler&waypoints=22.71512\,104.68808%7C22.66564\,104.66353%7C22.
- 63694\,104.62981%7C22.71482\,104.59538%7C22.69281\,104.64873\nNavigace d
- o cíle (Vinh Quang): https://www.google.com/maps/dir/?api=1&destination
- =22.74322\,104.68027&travelmode=two-wheeler\nWaze: https://waze.com/ul?l
- l=22.74322\,104.68027&navigate=yes\n\n— Individuální plán\, Vietnam
- ská jízda 2026
+  hodinou\, kdy je vše ještě čerstvé.\n\nUBYTOVÁNÍ – ZAREZERVOV
+ ÁNO: Nậm Lỳ Retreat\, 21.–23. 10. (1 rodinný pokoj s výhledem n
+ a hory pro 4\, přes Booking.com). Navigace: https://www.google.com/maps
+ /dir/?api=1&destination=22.69482\,104.66833&travelmode=two-wheeler\n\nTI
+ PY NA UBYTOVÁNÍ:\nV mapě jsem označil spoustu ubytování v celé ob
+ lasti.\nPokud budete potřebovat přespat už v Cốc Pài\, tak doporu
+ čuji Nhà nghỉ Ngọc Sơn\, nebo Nùng Gia HomeStay s hezkou terasou
+  a výhledem do údolí.\nV oblasti Bản Phùng doporučuji Trọng Ph
+ ú Homestay.\nV Vinh Quang Hotel Tay Con Linh nebo Thanh Vân Homestay.\
+ nV širším okolí Vinh Quang se nachází spousta homestay ubytování
+ . Mezi mé tipy patří Nậm Lỳ Retreat Booking/Agoda\, nebo o trochu
+  vzdálenější\, ale naopak strategicky blíže vrcholu hory Chiều L
+ âu Thi - Lagom Su Phì Homestay Agoda\, nebo Long Chiều homestay.\nPr
+ o ubytování v celém kraji Hoàng Su Phì klikněte na odkazy níže.\
+ n\nKAPITÁN DNE: Dick\n\nMapa dne (Google My Maps): https://www.google.c
+ om/maps/d/viewer?mid=1-kuQR45J-FrQz9F80IphLExZKQEq6uc\nNavigace Google M
+ aps po Vaškově trase (5 průj. bodů\, shoda s linií 98 %): https://w
+ ww.google.com/maps/dir/?api=1&origin=22.74108\,104.67875&destination=22.
+ 74108\,104.67875&travelmode=two-wheeler&waypoints=22.71512\,104.68808%7C
+ 22.66564\,104.66353%7C22.63694\,104.62981%7C22.71482\,104.59538%7C22.692
+ 81\,104.64873\nNavigace do cíle (ubytování Nậm Lỳ Retreat): https
+ ://www.google.com/maps/dir/?api=1&destination=22.69482\,104.66833&travel
+ mode=two-wheeler\nWaze: https://waze.com/ul?ll=22.69482\,104.66833&navig
+ ate=yes\n\n— Individuální plán\, Vietnamská jízda 2026
 END:VEVENT
 BEGIN:VEVENT
 UID:den13@vietnam2026.vitkaspar
