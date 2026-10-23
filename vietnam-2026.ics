@@ -1851,7 +1851,7 @@ DTSTAMP:20260914T120000Z
 DTSTART;VALUE=DATE:20261024
 DTEND;VALUE=DATE:20261025
 SUMMARY:Den 14: PŘEJEZD DO CAO BẰNG – Lâm Bình → Bảo Lạc
-LOCATION:Bảo Lạc\, Vietnam (22.94704\,105.68024)
+LOCATION:Bảo Lạc\, Vietnam (22.95\,105.681)
 DESCRIPTION:Přejezd po vedlejších cestách a provinční silnici do m
  ěstečka Bảo Lạc. Začátek provincie Cao Bằng.\nVzdálenost 165 
  km\, čistá jízda 5h 8m. Profil trasy: vedlejší cesty\, hlavní tahy
@@ -1888,23 +1888,27 @@ DESCRIPTION:Přejezd po vedlejších cestách a provinční silnici do m
  estaurace Nhà hàng Lê Ngân. Nenechte se odlákat často prázdným p
  řízemím\, kde je vstup. Místní vždy sedí v podzemním nebo nadzem
  ním patře\, kam se dostanete po schodech na konci restaurace.\nVe měs
- tě je případně i dobrá kavárnička An Hung Cafe.\n\nTIPY NA UBYTOV
- ÁNÍ:\nV městě Bảo Lạc doporučuji skvělý hotel Khách sạn Đ
- ức Tài. Pro rezervaci však musíte zavolat\, nebo napsat na telefonn
- í číslo uvedené v Google Mapě.\nV blízkém okolí je pár dalšíc
- h možností hezkých hotelů. Online se dají zamluvit:\nViet Hoang Hot
- el Bao Lac. Booking/Agoda\nBao Lac Homestay & Hostel.\nĐức Anh Hotel.
-  Agoda\nOstatní hotely jsou Khách sạn Quý Anh a Thuy Duong 2 Hotel.
- \n\nKAPITÁN DNE: Kapitán Posera\n\nMapa dne (Google My Maps): https://
- www.google.com/maps/d/viewer?mid=1sFm1Tw48z1dJo7u5nR3sNUxiR4FOJpI\nNavig
- ace Google Maps po Vaškově trase (4 průj. bodů\, shoda s linií 93 %
- ): https://www.google.com/maps/dir/?api=1&origin=22.47826\,105.29795&des
- tination=22.94703\,105.68029&travelmode=two-wheeler&waypoints=22.49334\,
- 105.54187%7C22.57892\,105.59143%7C22.6123\,105.65395%7C22.68074\,105.723
- 64\nNavigace do cíle (Bảo Lạc): https://www.google.com/maps/dir/?ap
- i=1&destination=22.94704\,105.68024&travelmode=two-wheeler\nWaze: https:
- //waze.com/ul?ll=22.94704\,105.68024&navigate=yes\n\n— Individuální 
- plán\, Vietnamská jízda 2026
+ tě je případně i dobrá kavárnička An Hung Cafe.\n\nUBYTOVÁNÍ 
+ – ZAREZERVOVÁNO: Miền Tây Hotel Cao Bằng (Khách sạn Miền T
+ ây\, Bảo Lạc)\, 24.–25. 10. (2 pokoje pro 4\, přes Booking.com).
+  Navigace: https://www.google.com/maps/dir/?api=1&destination=22.95\,105
+ .681&travelmode=two-wheeler\n\nTIPY NA UBYTOVÁNÍ:\nV městě Bảo L
+ ạc doporučuji skvělý hotel Khách sạn Đức Tài. Pro rezervaci 
+ však musíte zavolat\, nebo napsat na telefonní číslo uvedené v Goo
+ gle Mapě.\nV blízkém okolí je pár dalších možností hezkých hot
+ elů. Online se dají zamluvit:\nViet Hoang Hotel Bao Lac. Booking/Agoda
+ \nBao Lac Homestay & Hostel.\nĐức Anh Hotel. Agoda\nOstatní hotely j
+ sou Khách sạn Quý Anh a Thuy Duong 2 Hotel.\n\nKAPITÁN DNE: Kapitá
+ n Posera\n\nMapa dne (Google My Maps): https://www.google.com/maps/d/vie
+ wer?mid=1sFm1Tw48z1dJo7u5nR3sNUxiR4FOJpI\nNavigace Google Maps po Vaško
+ vě trase (4 průj. bodů\, shoda s linií 93 %): https://www.google.com
+ /maps/dir/?api=1&origin=22.47826\,105.29795&destination=22.94703\,105.68
+ 029&travelmode=two-wheeler&waypoints=22.49334\,105.54187%7C22.57892\,105
+ .59143%7C22.6123\,105.65395%7C22.68074\,105.72364\nNavigace do cíle (ub
+ ytování Miền Tây Hotel Cao Bằng (Khách sạn Miền Tây\, Bảo
+  Lạc)): https://www.google.com/maps/dir/?api=1&destination=22.95\,105.
+ 681&travelmode=two-wheeler\nWaze: https://waze.com/ul?ll=22.95\,105.681&
+ navigate=yes\n\n— Individuální plán\, Vietnamská jízda 2026
 END:VEVENT
 BEGIN:VEVENT
 UID:den15@vietnam2026.vitkaspar
