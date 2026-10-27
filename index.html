@@ -905,7 +905,7 @@ const TODO=[
  {id:'cash', doDate:'2026-10-08', who:'každý', title:'Hotovost USD/EUR, karta, Grab, SIM', note:'Nové bankovky vyšších hodnot mají lepší kurz (směnárna Quang Dũng, Hà Trung). Grab si nainstaluj a přidej kartu předem – z letiště se platí hotově, tak si na letišti rozměň pár set tisíc VND. SIM Viettel v příletové hale (350 000 VND / 30 dní).'},
  {id:'app', doDate:'2026-10-09', who:'každý', title:'Telefon: aplikace na plochu, hlasy Zuzana + Linh, projít dny offline', note:'Otevřít každý den v aplikaci, aby se uložil do cache. Stáhnout hlasy v Nastavení › Zpřístupnění › Čtený obsah. Google mapy: stáhnout offline oblast severního Vietnamu.'},
  {id:'ci1', doDate:'2026-10-09', who:'každý', title:'Online check-in VJ032 (od 9. 10. 20:55)', note:'vietjetair.com › My booking, výběr sedadel. Zavazadlo 40 kg v tarifu Deluxe.', links:[{t:'vietjetair.com',u:'https://www.vietjetair.com/'}]},
- {id:'d3', done:true, doDate:'2026-10-11', who:'Dick', forDay:3, title:'Homestay v Xuân Sơn na 13. 10. – zarezervováno', note:'Hotovo 11. 10.: Homestay Xuân Sơn 2 přes Booking, 2 pokoje, US$24 celkem. Potvrzení v Booking appce. Večeři a čas příjezdu domluvit s hostitelem.'},
+ {id:'d3', done:true, doDate:'2026-10-11', who:'Doktr Fuck', forDay:3, title:'Homestay v Xuân Sơn na 13. 10. – zarezervováno', note:'Hotovo 11. 10.: Homestay Xuân Sơn 2 přes Booking, 2 pokoje, US$24 celkem. Potvrzení v Booking appce. Večeři a čas příjezdu domluvit s hostitelem.'},
  {id:'d4', doDay:3, forDay:4, who:'kdokoli', title:'Ubytování v Tà Xùa na 14. 10.', note:'Tà Xùa Jade (Vừng Homestay) je podle Facebooku od 8/2024 zavřený; na Bookingu je Háng Đồng Ecolodge (8,9), ostatní přes Facebook nebo na místě. Ubytování je spousta, mimo svátky nehrozí, že nebude. Vybrat s výhledem do údolí a pokoj si napřed prohlédnout.'},
  {id:'d5', doDay:4, forDay:5, who:'kdokoli', title:'Trạm Tấu na 15. 10.: chatky u horkých pramenů', note:'Tram Tau Hot Spring – rezervace přes Facebook manažera. Na Bookingu: Zoni Home (9,6, volné, oddělené postele); Na Thẩm Eco Hill jen Agoda/Facebook, Xoè Homestay jen Facebook (k pramenům se pak jen dojede vykoupat).'},
  {id:'d6', doDay:3, forDay:6, who:'kdokoli', title:'Khau Phạ na 16. 10.: homestay KPF + objednat BBQ a bylinnou koupel', note:'Všech 5 homestayů se rezervuje přes Facebook „Khau Phạ CBT by KPF“ (Vaškův tip: Kiên Pành). Večerní BBQ na BBQ Hill pořádají jen pro hosty, kteří si ho objednají předem – domluvit rovnou s rezervací. Koupel nohou objednat na místě před večeří.'},
@@ -1240,7 +1240,7 @@ function geoUpdate(){ geoDist(); mapMe(); const sec=document.querySelector('.pla
   const nextTxt = next ? ` · další: <b>${esc(next.querySelector('.pt').textContent)}</b> za ${fmtKm(Math.max(0,+next.dataset.km-along))}` : ' · jste v cíli';
   prog.querySelector('.ptxt').innerHTML = `<b>${Math.round(pct)} %</b> trasy · ${fmtKm(along)} z ${fmtKm(total)}${nextTxt}${pl.speed&&total>along?` · do cíle ~${fmtDur((total-along)/pl.speed)}`:''}${best.d>2?` · <em>mimo trasu ${fmtKm(best.d)}</em>`:''}`; }
 
-const CAPTAINS=['Brambůrek','Dick','Salámek','Kluzák']; const CAPT_FROM=7;   // 17. 10. = Brambůrek, dál dokola (přezdívky od 26. 10.: dřív Mistr Tuktuk / Posranej Melounek / Kapitán Posera)
+const CAPTAINS=['Brambůrek','Doktr Fuck','Salámek','Kluzák']; const CAPT_FROM=7;   // 17. 10. = Brambůrek, dál dokola (přezdívky od 26. 10.: dřív Mistr Tuktuk / Posranej Melounek / Kapitán Posera)
 function captain(n){ return n>=CAPT_FROM?CAPTAINS[(n-CAPT_FROM)%CAPTAINS.length]:null; }
 function renderDay(n){
   cur = n; const d = DAYS[n-1]; const k = KML[String(n)]||{pois:[],routes:[]};
@@ -1597,18 +1597,18 @@ function renderPractical(){
     <div class="flight"><div class="code">VJ032</div><div class="t">08:10 <small>ne 11. 10. · Almaty</small></div><div class="t">16:20 <small>ne 11. 10. · Hà Nội (Nội Bài)</small></div></div>
     <div class="flight"><div class="code">VJ031</div><div class="t">06:40 <small>út 3. 11. · Hà Nội</small></div><div class="t">11:15 <small>út 3. 11. · Almaty</small></div></div>
     <div class="flight"><div class="code">VJ031</div><div class="t">12:45 <small>út 3. 11. · Almaty</small></div><div class="t">16:25 <small>út 3. 11. · Praha</small></div></div>
-    <dl class="kv"><dt>Cestující</dt><dd>Dick (22EA7W, 15K) · Kluzák 15H, Brambůrek 15J, Salámek 16G (EZPQC8) – QR kódy níže v Dokladech na letišti</dd><dt>Tarif</dt><dd>Deluxe, zavazadlo 40 kg, Combo Meal, Special Change</dd><dt>Cena</dt><dd>740,01 EUR (VJPVI UPC, 28. 5. 2026)</dd><dt>Check-in</dt><dd>online 24 h před odletem na vietjetair.com („My booking“)</dd></dl>
+    <dl class="kv"><dt>Cestující</dt><dd>Doktr Fuck (22EA7W, 15K) · Kluzák 15H, Brambůrek 15J, Salámek 16G (EZPQC8) – QR kódy níže v Dokladech na letišti</dd><dt>Tarif</dt><dd>Deluxe, zavazadlo 40 kg, Combo Meal, Special Change</dd><dt>Cena</dt><dd>740,01 EUR (VJPVI UPC, 28. 5. 2026)</dd><dt>Check-in</dt><dd>online 24 h před odletem na vietjetair.com („My booking“)</dd></dl>
     <p style="font-size:14px;color:var(--muted);margin-top:8px">Plán Vašek 14. 9. posunul o den, takže 1. den = přílet 11. 10. a odlet 3. 11. je 24. den. <b>Změna letu:</b> VietJet posunul zpáteční VJ031 o 2 h 05 min dřív (původně 8:45 → 13:20 a 14:50 → 18:30), přílet do Prahy je nově v 16:25. Odjezd z hotelu nejpozději ve 4:00.</p></div>`;
   // ---------- doklady na letišti: každý člen posádky má kolonku (letenka + vstupní deklarace) ----------
   const CREW=[
-    {nick:'Dick', name:'Kaspar Vit Borivoj', pnr:'22EA7W', seat:'15K', ticket:'img/letenka-22EA7W-qr.png', pre:'img/prearrival-dick.png', preDate:'9. 10. 2026'},
+    {nick:'Doktr Fuck', name:'Kaspar Vit Borivoj', pnr:'22EA7W', seat:'15K', ticket:'img/letenka-22EA7W-qr.png', pre:'img/prearrival-dick.png', preDate:'9. 10. 2026'},
     {nick:'Kluzák', name:'Dimitrov Jan', pnr:'EZPQC8', seat:'15H', ticket:'img/letenka-EZPQC8-qr.png', pre:'img/prearrival-posera.png', preDate:'9. 10. 2026'},
     {nick:'Brambůrek', name:'Kozel Jakub', pnr:'EZPQC8', seat:'15J', ticket:'img/letenka-EZPQC8-qr.png', pre:'img/prearrival-tuktuk.png', preDate:'10. 10. 2026'},
     {nick:'Salámek', name:'Hrabe Jakub', pnr:'EZPQC8', seat:'16G', ticket:'img/letenka-EZPQC8-qr.png', pre:'img/prearrival-melounek.png?v=2', preDate:'9. 10. 2026, opravená verze'},
   ];
   const qrImg=(src,alt,w)=>`<img class="qr" src="${src}" alt="${esc(alt)}" data-qr="${src}" data-qrlabel="${esc(alt)}" title="Klepnutím zvětšit" style="width:${w}px;height:${w}px;max-width:100%;background:#fff;padding:8px;border-radius:12px;image-rendering:pixelated;flex:none;cursor:zoom-in">`;
   h += `<div class="sec"><h3>Doklady na letišti <small>letenka + vstupní deklarace, každý svoje</small></h3>
-    <p style="font-size:14px;color:var(--muted);margin:0 0 10px">Rezervace <b>22EA7W</b> (Dick) a <b>EZPQC8</b> (ostatní tři, jeden QR pro všechny). Vstupní deklarace (Pre-arrival Information) se ukazuje na pasové kontrole na Nội Bài spolu s pasem – každý má svůj QR; kdo ji nemá, vyplní ji na immigration.gov.vn (let VJ032, hotel Lucien Hanoi Lakeside, 2 Ngõ Cầu Gỗ, Hoàn Kiếm, odjezd 3. 11. 2026).</p>
+    <p style="font-size:14px;color:var(--muted);margin:0 0 10px">Rezervace <b>22EA7W</b> (Doktr Fuck) a <b>EZPQC8</b> (ostatní tři, jeden QR pro všechny). Vstupní deklarace (Pre-arrival Information) se ukazuje na pasové kontrole na Nội Bài spolu s pasem – každý má svůj QR; kdo ji nemá, vyplní ji na immigration.gov.vn (let VJ032, hotel Lucien Hanoi Lakeside, 2 Ngõ Cầu Gỗ, Hoàn Kiếm, odjezd 3. 11. 2026).</p>
     ${CREW.map(c=>`<div class="stay" style="margin-bottom:12px"><div class="bd"><div class="nm">${esc(c.nick)}<small>${esc(c.name)} · rezervace ${c.pnr} · sedadlo ${c.seat} na všech úsecích</small></div>
       <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:8px">
         <div style="text-align:center;font-size:13px">${qrImg(c.ticket,'QR letenky '+c.pnr+' – '+c.nick,150)}<div>Letenka ${c.pnr}</div></div>
